@@ -1,9 +1,11 @@
 <ion-header>
+<ion-toolbar color="primary">
   <ion-navbar>
     <ion-title>
-     Login
+     DashBoard
     </ion-title>
   </ion-navbar>
+   </ion-toolbar>
 </ion-header>
 
 <ion-content padding class="new-user">
@@ -16,17 +18,19 @@
     <ion-option>3</ion-option>
     </ion-select>
   </ion-item>
+   
   <ion-item>
     <ion-label fixed>Firstname</ion-label>
-    <ion-input [(ngModel)]="user.firstname" type="text" value=""></ion-input>
+    <ion-input [(ngModel)]="firstname" type="text" value=""></ion-input>
   </ion-item>
 <ion-item>
     <ion-label fixed>Lastname</ion-label>
-    <ion-input type="text" [(ngModel)]="user.lastname"  value=""></ion-input>
+    <ion-input [(ngModel)]="lastname" type="text" value=""></ion-input>
   </ion-item>
+   
   <ion-item>
     <ion-label fixed>Company</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input [(ngModel)]="CountryCode" type="text"></ion-input>
   </ion-item>
  <ion-item>
     <ion-label fixed>Job Title</ion-label>
@@ -40,10 +44,11 @@
     <ion-label fixed>Phone no</ion-label>
     <ion-input type="number"></ion-input>
   </ion-item>
-  <ion-item>
-    <ion-label fixed>Message</ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
+  
+   <ion-item>
+        <ion-label>Message</ion-label>
+        <ion-textarea name="message"></ion-textarea>
+      </ion-item>
 </ion-list>
-<button ion-button (click)="save()">Done</button>
+<button ion-button (click)="submit()">Done</button>
 </ion-content>

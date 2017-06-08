@@ -1,0 +1,58 @@
+<!--
+  Generated template for the LoginPage page.
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-toolbar color="primary">
+    <ion-navbar>
+    <ion-title>
+    <p><b>SIGN IN</b></p> 
+    </ion-title>
+     </ion-navbar>
+   </ion-toolbar>
+  
+</ion-header>
+
+<ion-content padding>
+<h4><b>Sign in to your Account</b></h4>
+<form  [formGroup]="myForm" autocomplete="on">
+    <ion-list>
+     <ion-item>
+    <ion-label color="primary" class="label" stacked><h5>Company Email-ID :</h5></ion-label>
+    <ion-input  formControlName="email" type="email" name="ID" [(ngModel)]="email" placeholder="Your company Email-ID" required clearInput ></ion-input>
+    </ion-item>
+    <br>
+    <ion-item>
+    <ion-label color="primary" stacked><h5>Password :</h5></ion-label>
+    <ion-input  formControlName="password" required type="password" [(ngModel)]="pass"
+        placeholder="Your password"  clearInput></ion-input>
+    </ion-item>
+    <!-- <ion-item >
+    <p *ngIf="!myForm.controls.password.valid" color="danger">
+          *password is required
+        </p>
+        </ion-item> -->
+        <br>
+    </ion-list>
+    </form>
+    <h5 ion-text *ngIf="showerror" color="danger">{{error}} !!</h5> 
+    <button  class="btn btn-blue" full [disabled]="!myForm.valid" ion-button end color="primary" (click)="submit()">
+      SIGN IN
+    </button>
+<h5 color="secondary" (click)="passwordtrouble()" text-center><p><b>Trouble Signing In?</b></p></h5>
+
+<h5 text-center><b>Or</b></h5>
+<br>
+ <button  class="btn btn-blue" full ion-button end color="primary" (click)="dofblogin()">
+     <span><ion-icon name="logo-facebook"></ion-icon></span> &nbsp;&nbsp;Facebook login
+    </button>
+    <br>
+     <button  class="btn btn-red" full ion-button end color="danger" (click)="doGooglelogin()">
+      <ion-icon name="logo-googleplus"></ion-icon> &nbsp;&nbsp;Google+ login
+    </button>
+    <br><br><br>
+    <h5 text-center><b>Terms of service</b> and <b>privacy Policy</b></h5>
+   </ion-content>
+

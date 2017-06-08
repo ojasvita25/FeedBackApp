@@ -1,0 +1,47 @@
+<!--
+  Generated template for the EventTemplates page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+<ion-toolbar color="secondary">
+  <ion-navbar>
+    <ion-title>{{event_name}}</ion-title>
+&nbsp;&nbsp;
+   <ion-icon (click)="exitKiosk()" *ngIf="hide"  color="light" ios="ios-apps" md="md-apps"></ion-icon>
+     <ion-buttons end  *ngIf="show" >
+      <button  [disabled]="disable" ion-button icon-only (click)="KioskMode()">
+      Kiosk Mode
+      </button>
+      &nbsp;&nbsp;
+      <button  [disabled]="disable"  ion-button icon-only (click)="close()">
+       <ion-icon ios="ios-close" md="md-close"></ion-icon>
+      </button>
+
+    </ion-buttons>
+  </ion-navbar>
+</ion-toolbar>
+
+</ion-header>
+<ion-content class="main_bg" padding>
+<ion-card  *ngFor="let item of templatesInfo  ;let i = index; " (click)="itemSelected(templatesInfo[i].name,templatesInfo[i].id)">
+  <ion-card-header  text-center>
+     <h2><b>  {{item.name}}</b></h2>
+  </ion-card-header>
+
+  <ion-card-content>
+  <b>
+   <h5 innerHTML="{{item.sub_title}}"></h5></b>
+   <br>
+     <h5 color="primary"><b>Created on : &nbsp;&nbsp; {{item.creation_date}}</b></h5>
+  
+     <h5> <b>Total Responses :  &nbsp;&nbsp;{{item.total_responses}}</b>
+</h5>
+      <div text-right> <ion-icon  color="secondary"  item-right ios="ios-return-right" md="md-return-right"></ion-icon></div>
+
+     
+  </ion-card-content>
+
+</ion-card>
+</ion-content>

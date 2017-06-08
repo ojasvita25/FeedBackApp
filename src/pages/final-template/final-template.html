@@ -1,0 +1,125 @@
+<!--
+  Generated template for the FinalTemplate page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+<ion-toolbar color="primary">
+  <ion-navbar>
+    <ion-title>
+   <b>{{template_name}}</b>
+    <ion-buttons end  *ngIf="showclose" >
+     
+      <button  [disabled]="disable"  ion-button icon-only (click)="close()">
+       <ion-icon ios="ios-close" md="md-close"></ion-icon>
+      </button>
+
+    </ion-buttons>
+    </ion-title>
+  </ion-navbar>
+   </ion-toolbar>
+</ion-header>
+
+<ion-content class="main_bg" padding>
+<p color="primary"><b>{{title}}:</b></p>
+<p innerHTML="{{subtitle}}"></p>
+<!-- <ion-item>
+  <ion-label> single answer :</ion-label>
+  <ion-toggle [(ngModel)]="isToggled" checked="false" (ionChange)="logEvent()"></ion-toggle>
+</ion-item> -->
+<form  [formGroup]="finalForm">
+<div formGroupName="formgp">
+
+<ion-list no-lines *ngFor="let c of leadTemplateFieldInfo;let i = index;" >
+
+
+
+<!-- text,email,url,number -->
+<ion-item  *ngIf="c.data_type == 'text' || c.data_type == 'email'  || c.data_type == 'url'||c.data_type == 'number' ">
+
+<ion-label color="primary" stacked><h2>{{i+1}}.{{c.field_label}}<span color="danger" *ngIf="c.required_flag=='Y'">*</span></h2></ion-label>
+<ion-input [formControlName]="c.field_name" name="c.field_name" [(ngModel)]="field_value[i]" [class.invalid]="!finalForm.controls.formgp.valid" placeholder="Type Here..." type="text" value=""></ion-input>
+</ion-item>
+
+
+
+
+
+<!-- dropdown -->
+<ion-item *ngIf="c.data_type == 'Picklist'" >
+<ion-label color="primary" stacked><h2>{{i+1}}.{{c.field_label}}<span color="danger" *ngIf="c.required_flag=='Y'">*</span></h2></ion-label>
+<ion-select  [formControlName]="c.field_name" [(ngModel)]="field_value[i]" [class.invalid]="!finalForm.controls.formgp.valid" multiple="true" >
+    <ion-option *ngFor="let d of c.field_values;let j = index;" [value] = "d" [selected]="false">{{d}}</ion-option>
+<!-- <ion-option>{{c.field_values}}</ion-option> -->
+</ion-select> 
+</ion-item>
+
+
+
+
+
+<!-- comment -->
+<ion-item *ngIf="c.data_type == 'Text Area'" >
+<ion-label color="primary" stacked><h2>{{i+1}}.{{c.field_label}}<span color="danger" *ngIf="c.required_flag=='Y'">*</span></h2></ion-label>
+ <ion-textarea type="text" [formControlName]="c.field_name"  placeholder="Comment here..." [(ngModel)]="field_value[i]" ></ion-textarea>
+ </ion-item>
+
+
+
+
+<!-- checkbox multiple selection -->
+<div *ngIf="c.data_type == 'checkbox' && c.single_select_flag=='N'">
+<ion-item>
+<ion-label color="primary"  stacked><h2>{{i+1}}.{{c.field_label}}<span color="danger" *ngIf="c.required_flag=='Y'">*</span></h2></ion-label>
+</ion-item>
+<ion-item  class="checkboxes" *ngFor="let d of c.field_values;let j = index;" >
+<label  class="control control--checkbox">
+<input  [formControlName]="c.field_name"  type="checkbox" [checked]="cbChecked[i].indexOf(c.field_values[j]) >= 0" (change)="updateCheckedOptions(i,c.field_values[j],c.template_id,$event,c.field_values)" [class.invalid]="!finalForm.controls.formgp.valid"/>
+{{d}}<div class="control__indicator"></div></label>
+</ion-item>
+</div>
+
+
+<!-- checkbox single selection -->
+<div *ngIf="c.data_type == 'checkbox' && c.single_select_flag=='Y'">
+<ion-item>
+<ion-label color="primary"  stacked><h2>{{i+1}}.{{c.field_label}}<span color="danger" *ngIf="c.required_flag=='Y'">*</span></h2></ion-label>
+</ion-item>
+<ion-item  *ngFor="let d of c.field_values;let j = index;" >
+<label class="control control--checkbox">
+<input [formControlName]="c.field_name"  type="checkbox" [checked]="cbChecked[i].indexOf(c.field_values[j]) >= 0" (change)="updateCheckedOptionssingle(i,c.field_values[j],c.template_id,$event,c.field_values)" [class.invalid]="!finalForm.controls.formgp.valid"/>
+{{d}}<div class="control__indicator"></div></label>
+</ion-item>
+</div>
+
+<!-- radio button -->
+<div class="checkboxes" *ngIf="c.data_type == 'radio'">
+<ion-item>
+<ion-label color="primary"  stacked><h2>{{i+1}}.{{c.field_label}}<span color="danger" *ngIf="c.required_flag=='Y'">*</span></h2></ion-label>
+</ion-item>
+<ion-item *ngFor="let d of c.field_values;let j =index">
+<label class="control control--radio">
+<input [formControlName]="c.field_name"  type="radio" [value]="d" [checked]="false" [(ngModel)]="field_value[i]">
+{{d}}
+<div class="control__indicator"></div>
+</label>
+</ion-item>
+</div>
+<!-- date -->
+<ion-item *ngIf="c.data_type == 'date'">
+  <ion-label color="primary" stacked><h2>{{i+1}}.{{c.field_label}}<span color="danger" *ngIf="c.required_flag=='Y'">*</span></h2></ion-label>
+  <ion-datetime placeholder="Choose date.." [formControlName]="c.field_name"  displayFormat="MM/DD/YYYY" [(ngModel)]="field_value[i]" [class.invalid]="!finalForm.controls.formgp.valid"></ion-datetime>
+</ion-item>
+<!-- <h5>{{field[i].field_name}}</h5> -->
+
+</ion-list> 
+ </div>
+</form>
+<h5 ion-text *ngIf="showsuccess" color="danger">Successfully saved!!</h5> 
+ <button class="btn btn-blue" [disabled]="!finalForm.valid" ion-button end full color="primary" (click)="save()">
+      Submit
+    </button>
+
+<!-- <h5 *ngFor="let e of field_value">{{e}}</h5> 
+ --></ion-content>

@@ -1,0 +1,40 @@
+<!--
+  Generated template for the GetTemplate page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+<ion-toolbar color="primary">
+ <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon> 
+    </button>
+   <ion-title text-center>
+    <p><b>All Events</b></p>
+    </ion-title>
+ 
+<!-- <ion-searchbar
+  (ionInput)="getItems($event)">
+</ion-searchbar> --></ion-toolbar>
+</ion-header>
+
+<ion-content class="main_bg" padding>
+
+<ion-card  *ngFor="let item of eventInfo ;let i = index; " (click)="itemSelected(eventInfo[i].name,eventInfo[i].leadTemplateList)">
+  <ion-card-header  text-center>
+     <h2><b>  {{item.name}}</b></h2>
+  </ion-card-header>
+
+  <ion-card-content>
+     <h5 color="primary"><b>Created on : &nbsp;&nbsp; {{item.creation_date}}</b></h5>
+  
+     <h5> <b>Total Responses :  &nbsp;&nbsp;</b>
+</h5>
+      <div text-right> <ion-icon  color="primary"  item-right ios="ios-return-right" md="md-return-right"></ion-icon></div>
+
+     
+  </ion-card-content>
+
+</ion-card>
+
+</ion-content>

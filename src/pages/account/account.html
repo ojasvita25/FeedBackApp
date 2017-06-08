@@ -1,0 +1,89 @@
+<!--
+  Generated template for the Account page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+<ion-toolbar color="primary">
+     
+      <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon> 
+    </button>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logOut()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center>
+   <p><b>Account & Settings</b></p>
+    </ion-title>
+ 
+   </ion-toolbar>
+</ion-header>
+<ion-content padding>
+
+<h5><b>Account</b></h5>
+<ion-list>
+    <ion-list-header>
+     <p><b>*Tap on the information to edit details.</b></p>
+    </ion-list-header>
+
+    <ion-item (click)="updateName()">
+      <ion-grid>
+        <ion-row>
+          <ion-col width-50 required>
+           <h2> <b>UserName</b></h2>
+          </ion-col>
+          <ion-col>
+           <h2> {{email}}</h2>
+          </ion-col>
+          
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+ 
+ <ion-item (click)="updateName()">
+      <ion-grid>
+        <ion-row>
+          <ion-col width-50 required>
+           <h2> <b> Email</b></h2>
+          </ion-col>
+          <ion-col >
+            <h2>{{email}}</h2>
+          </ion-col>
+          
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col width-50 required>
+           <h2> <b> Password</b></h2>
+          </ion-col>
+            <ion-buttons end><button (click)="showpass()" ion-button small>{{name}}</button></ion-buttons>
+          <ion-col >
+          <h2 *ngIf="show">{{password}}</h2>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+ <ion-item (click)="updateName()">
+      <ion-grid>
+        <ion-row>
+          <ion-col width-50 required>
+          <h2> <b> Language</b></h2>
+          </ion-col>
+          <ion-col >
+          <h2> English</h2>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  
+  </ion-list>
+   <button full class="btn btn-green" ion-button (click)="logOut()">
+      SIGN OUT
+    </button>
+</ion-content>

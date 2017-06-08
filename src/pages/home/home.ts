@@ -1,29 +1,39 @@
 import { Component } from '@angular/core';
-import {DataService} from '../../providers/data-service';
+ import {Http} from '@angular/http';
 import { NavController } from 'ionic-angular';
-class user{
-	public firstname:string;
-	public lastname:string;
-	constructor() 
-	{
-	 this.firstname = ''; 
-	this.lastname = ''; 
-	}}
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html',
-  providers:[DataService]
+  templateUrl: 'home.html'
 })
 
 export class HomePage {
-user: user;
-  constructor(public navCtrl: NavController,public data:DataService) {
-  this.user=new user();
-  }
-save() { 
-var key = this.data.save(this.user); 
-if(key) {
- console.log('saved'); } 
-}
+CountryCode = '';
+firstname='';
+lastname='';
+data:any;
+data2:any;
 
+  constructor(public navCtrl: NavController,public http:Http) {
+ this.data= [];
+  }
+
+submit(){
+
+	 var link="http://www.iithiring.com/ajaxtest/CountryInformation";
+	 var data={
+  countryCode: this.CountryCode,
+  firstname:this.firstname,
+  lastname:this.lastname
+   };
+console.log(data);
+   this.http.post(link, data)
+        .subscribe(data => {
+         this.data.response = data.json();
+         console.log(data);
+        }, error => {
+            console.log("Oooops!");
+            
+        });
+
+}
 }

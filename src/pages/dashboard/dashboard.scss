@@ -1,0 +1,52 @@
+@import url(https://fonts.googleapis.com/css?family=Poiret+One);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu);
+
+page-dashboard  {
+.main_bg {
+  background-color:#e0e0e0;
+}
+@mixin button-bg($bg) {
+  background: $bg;
+  &:hover {
+    background:darken($bg,8%);
+    transition: all 0.3s ease;
+  }
+  &:active {
+    background:darken($bg,25%);
+  } 
+}
+.btn {
+ color:white;
+ text-decoration:none;
+ padding:20px 40px;
+ border-radius:3px;
+ font-family: 'Poiret One', cursive;
+ font-size:2em;
+}
+
+.btn-green {
+   @include button-bg(#2ecc71);
+}
+
+.btn-blue {
+   @include button-bg(#3498db);
+}
+/*Other Stylez*/
+.wrap {
+  margin:0 auto;
+  width:800px;
+  text-align:center;
+}
+h1,h2,h5,ion-item{
+  font-family: 'Poiret One', cursive;
+  }
+p {
+  font-family: 'Poiret One', cursive;
+  font-size:1em;
+}
+#active_template {
+   border-top: 3.7px solid #2ecc71
+}
+}
+
+

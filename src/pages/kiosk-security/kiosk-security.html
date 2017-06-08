@@ -1,0 +1,37 @@
+<!--
+  Generated template for the KioskSecurity page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-toolbar color="primary">
+   
+    <ion-title>
+    <p><b>Enter Password</b></p> 
+    </ion-title>
+    
+   </ion-toolbar>
+  
+</ion-header>
+
+
+<ion-content padding>
+<form  [formGroup]="myForm" autocomplete="on">
+
+ <ion-item>
+       <ion-label color="primary" class="label" stacked><h5><b>Enter Password</b></h5></ion-label>
+
+    <ion-input  formControlName="password"  required type="password" [(ngModel)]="pass"
+        placeholder="Enter Password"  clearInput></ion-input>
+    </ion-item>
+    </form>
+    <br>
+ <button  class="btn btn-blue" full [disabled]="!myForm.valid" ion-button end color="primary" (click)="submit()">
+      SIGN IN
+    </button>
+    <br>
+    <h5 color="secondary" (click)="passwordtrouble()" text-center><p><b>Forgot Password?</b></p></h5>
+    
+</ion-content>

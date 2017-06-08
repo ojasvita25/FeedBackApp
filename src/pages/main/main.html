@@ -1,0 +1,52 @@
+<!--
+  Generated template for the Main page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-content  padding>
+<div text-center>
+<img src="assets/feedback.png"/>
+
+
+
+<!--  <button ion-button (click)="whatsappShare()">Share on WhatsApp</button>
+  <button ion-button (click)="twitterShare()">Share on Twitter</button>
+  <button ion-button (click)="facebookShare()">Share on Facebook</button>
+  <button ion-button (click)="otherShare()">Share Other</button> -->
+ <h1 >feedzapp</h1></div>
+
+<!-- <p>where surveys are made easier..</p> -->
+<!-- <h2 color="primary" text-center>WELCOME</h2>
+<h2 color="primary" text-center>To FeedApp !!</h2> -->
+
+<!-- <ion-row> <ion-col text-center><button  (click)="register()"class="btn btn-green" large> Register</button> 
+<button  class="btn btn-blue" (click)="login()"> Login</button></ion-col></ion-row> -->
+<button ion-button full (click)="register()"class="btn btn-green">Sign up using E-mail</button> 
+<br>
+<button  class="btn btn-blue" full ion-button end color="primary" (click)="dofblogin()">
+     <span><ion-icon name="logo-facebook"></ion-icon></span> &nbsp;&nbsp;Facebook login
+    </button>
+    <br>
+     <button  class="btn btn-red" full ion-button end color="danger" (click)="doGooglelogin()">
+      <ion-icon name="logo-googleplus"></ion-icon> &nbsp;&nbsp;Google+ login
+    </button>
+    <h5 text-center>Already a user? <span (click)="login()" color="primary"><b><u>LOGIN</u></b></span></h5>
+   <!--  <button ion-button (click)="openmodal()">OPEN</button> -->
+<!-- <ion-item *ngFor="let d of value;let i =index">
+<label>
+<input type="checkbox" [(ngModel)]="d.checked" (change)="update(i,d.checked,value,d)" />
+{{d.subOption}}{{d.checked}}
+{{field_value}}
+</label>
+</ion-item> -->
+<!-- <ion-item *ngFor="let d of value;let i =index">
+<label>
+<input name="options" type="radio" [value]="d.subOption" [checked]="false" [(ngModel)]="field_value" (click)="uncheck($event)">
+{{d.subOption}}{{field_value}}
+</label>
+</ion-item> -->
+</ion-content>
+
+

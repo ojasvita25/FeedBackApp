@@ -1,0 +1,33 @@
+<!--
+  Generated template for the CustomFeedbackForm page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+<ion-toolbar color="primary">
+  <ion-navbar>
+    <ion-title>
+   Final Feedback Form 
+    </ion-title>
+  </ion-navbar>
+   </ion-toolbar>
+</ion-header>
+<ion-content padding class="masters">
+
+<ion-list *ngFor="let custom of customs;let i = index;" >
+
+<ion-item  *ngIf="custom.type == '1'">
+<ion-label fixed>{{custom.name}}</ion-label>
+<ion-input [(ngModel)]="data[i]" type="text" value=""></ion-input>
+</ion-item>
+
+<ion-item *ngIf="custom.type == '2'" >
+   <ion-label fixed>{{custom.name}}</ion-label>
+   <ion-select  [(ngModel)]="data[i]" multiple="true">
+    <ion-option *ngFor="let d of custom.options;let j = index;">{{d.option}}</ion-option>
+        </ion-select>
+ </ion-item>
+</ion-list>
+<!-- <h5 *ngFor="let d of data">{{d}}</h5> -->
+</ion-content>
