@@ -112,9 +112,24 @@
   <ion-datetime placeholder="Choose date.." [formControlName]="c.field_name"  displayFormat="MM/DD/YYYY" [(ngModel)]="field_value[i]" [class.invalid]="!finalForm.controls.formgp.valid"></ion-datetime>
 </ion-item>
 <!-- <h5>{{field[i].field_name}}</h5> -->
+<!-- Flyer -->
 
 </ion-list> 
- </div>
+<ion-row responsive-sm wrap>
+    <ion-col *ngFor="let c of leadTemplateFieldInfo;let i = index;">
+<ion-card  *ngIf="c.data_type=='image'">
+  <ion-item> 
+   <label class="control control--checkbox">
+<input  [checked]="false" (change)="chkbox(c.image_values[0],$event,i)" [formControlName]="c.field_name" [class.invalid]="!finalForm.controls.formgp.valid"  type="checkbox"/>
+&nbsp;&nbsp;&nbsp;&nbsp;{{c.image_values[0]}}
+<div class="control__indicator"></div></label>
+  </ion-item>
+  <img [src]="c.image_values[1] | safe:'resourceUrl'"/>
+</ion-card>
+</ion-col>
+</ion-row>
+</div>
+
 </form>
 <h5 ion-text *ngIf="showsuccess" color="danger">Successfully saved!!</h5> 
  <button class="btn btn-blue" [disabled]="!finalForm.valid" ion-button end full color="primary" (click)="save()">
@@ -122,4 +137,5 @@
     </button>
 
 <!-- <h5 *ngFor="let e of field_value">{{e}}</h5> 
- --></ion-content>
+ -->
+ </ion-content>

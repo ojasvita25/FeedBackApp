@@ -4,7 +4,7 @@ import { NavController, ViewController, NavParams , AlertController } from 'ioni
 import { FormBuilder,ReactiveFormsModule,FormControl,FormGroup, Validators } from '@angular/forms';
  import{ThanksPage}  from '../thanks/thanks';
   import {EventTemplatesPage} from '../event-templates/event-templates';
-
+import { DomSanitizer,SafeUrl,SafeResourceUrl} from '@angular/platform-browser';
 /*
   Generated class for the FinalTemplate page.
 
@@ -20,6 +20,7 @@ export class FinalTemplatePage {
 info:any[]=[];
 name:any;
 data:any;
+trustedDashboardUrl : SafeUrl;
 data_send:any;
 temp_field:any;
 template_name:any;
@@ -69,7 +70,9 @@ urlRegex = '(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^
 showclose:any;
 field: Array<{field_name: any, field_value: any}>=[];
 templatesInfo:any;
-  constructor(public viewCtrl: ViewController,public nav: NavController, public navParams: NavParams,public http:Http,public formBuilder: FormBuilder,private alertCtrl: AlertController) {
+  constructor(private sanitizer: DomSanitizer,public viewCtrl: ViewController,public nav: NavController, public navParams: NavParams,public http:Http,public formBuilder: FormBuilder,private alertCtrl: AlertController) {
+ 
+
   this.data= [];
   this.field_value=[];
   this.arr=[];
@@ -90,6 +93,16 @@ templatesInfo:any;
   this.subtitle=this.temp_field.json().subTitle;
   this.leadTemplateFieldInfo=this.temp_field.json().leadTemplateFieldInfo;
   this.tf=this.temp_field.leadTemplateFieldInfo;
+
+  
+  }
+ public imgurl: SafeResourceUrl;
+   public url: SafeResourceUrl;
+  photoUrl(){
+let url="https://image.freepik.com/free-vector/useful-and-modern-flyer-with-geometric-shapes_1017-4105.jpg";
+this.imgurl =  this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  console.log(this.imgurl);
+  return this.imgurl;
   }
 m:any[];
 public isToggled: boolean;
@@ -155,10 +168,15 @@ updateCheckedOptionssingle(i,chBox,id,event) {
       this.field_value[i]=this.cbChecked[i];
   
 }
-
+chkbox(chkbox,event,i){
+   if(event.target.checked) {
+   this.field_value[i]=chkbox;}
+    else {
+       this.field_value[i]=null;
+    }
+}
  public ngOnInit() {
-  
-let aFormGroup: FormGroup = new FormGroup({});
+  let aFormGroup: FormGroup = new FormGroup({});
 for (let c of this.leadTemplateFieldInfo) {
 
       if( (c.data_type == 'text' || c.data_type == 'number' ||  c.data_type=="Text Area" || c.data_type == 'date') && c.required_flag=='Y'){
@@ -187,12 +205,12 @@ for (let c of this.leadTemplateFieldInfo) {
       aFormGroup.addControl(c.field_name, control);
       }
 
-      if(c.required_flag=='Y' && (c.data_type == 'Picklist' || c.data_type=='checkbox'|| c.data_type=='radio')){
+      if(c.required_flag=='Y' && (c.data_type == 'image' || c.data_type == 'Picklist' || c.data_type=='checkbox'|| c.data_type=='radio')){
       let control: FormControl = new FormControl(c.field_name,Validators.compose([Validators.required]));
       aFormGroup.addControl(c.field_name, control);
 
       }
-      if(c.required_flag=='N' && (c.data_type == 'Picklist' || c.data_type=='checkbox' ||  c.data_type=='radio')){
+      if(c.required_flag=='N' && (c.data_type == 'image' || c.data_type == 'Picklist' || c.data_type=='checkbox' ||  c.data_type=='radio')){
          let control: FormControl = new FormControl(c.field_name);
       aFormGroup.addControl(c.field_name, control);
       }

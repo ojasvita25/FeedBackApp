@@ -105,8 +105,10 @@ ionViewDidLoad() {
   });
 }
   openmodal(){
- let profileModal = this.modalCtrl.create(SampleFormPage);
-   profileModal.present();
+
+  	
+this.nav.push(SampleFormPage);
+  
   }
 login(){
 	 this.nav.push(LoginPage);

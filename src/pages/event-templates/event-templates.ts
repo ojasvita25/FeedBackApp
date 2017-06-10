@@ -28,7 +28,7 @@ show=true;
 userid:any;
 disable=false;
 showc:any;
-  constructor(public http:Http,public viewCtrl: ViewController,public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController,public modalCtrl: ModalController) {
+  constructor(public http:Http,public viewCtrl: ViewController,public nav: NavController, public navParams: NavParams,private alertCtrl: AlertController,public modalCtrl: ModalController) {
   
 this.data= [];
 
@@ -61,8 +61,8 @@ this.hide=true;
         this.title=data.json().creation_date;
          console.log(data);
          console.log(this.title);
-let KioskModel = this.modalCtrl.create(FinalTemplatePage,{temp_field:data,template_name:this.tempname,userid:this.userid,temp_id:id,templatesInfo:this.templatesInfo,showclose:this.show});
-    KioskModel.present();
+this.nav.push(FinalTemplatePage,{temp_field:data,template_name:this.tempname,userid:this.userid,temp_id:id,templatesInfo:this.templatesInfo,showclose:this.show});
+   
            }, error => {
             console.log("Oooops!");
         });
@@ -92,7 +92,7 @@ exitKiosk(){
       {
         text: 'Yes',
         handler: () => {
-     this.navCtrl.push(KioskSecurityPage);
+     this.nav.push(KioskSecurityPage);
         }
       }
     ]

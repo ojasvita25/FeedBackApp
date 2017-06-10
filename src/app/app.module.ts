@@ -34,7 +34,7 @@ import { Ionic2RatingModule } from 'ionic2-rating';
 import {EventTemplatesPage} from '../pages/event-templates/event-templates';
 import { SocialSharing } from '@ionic-native/social-sharing';
  import{Thanks2Page}  from '../pages/thanks2/thanks2';
-
+import { SafePipe } from '../pipes/safe-pipe'
 @NgModule({
   declarations: [
     MyApp,
@@ -55,7 +55,8 @@ import { SocialSharing } from '@ionic-native/social-sharing';
      SampleFormPage ,
      KioskSecurityPage ,
      EventTemplatesPage,
-     Thanks2Page
+     Thanks2Page,
+     SafePipe
 
   ],
   imports: [

@@ -6,7 +6,9 @@
 -->
 <ion-header>
 <ion-toolbar color="secondary">
-  <ion-navbar>
+<button [disabled]="disable"  ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon> 
+    </button>
     <ion-title>{{event_name}}</ion-title>
 &nbsp;&nbsp;
    <ion-icon (click)="exitKiosk()" *ngIf="hide"  color="light" ios="ios-apps" md="md-apps"></ion-icon>
@@ -20,7 +22,7 @@
       </button>
 
     </ion-buttons>
-  </ion-navbar>
+
 </ion-toolbar>
 
 </ion-header>

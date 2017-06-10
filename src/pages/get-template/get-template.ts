@@ -27,7 +27,7 @@ temp_id:any;
 userid:any;
 searchQuery: string = '';
 eventInfo :any;
-  constructor( private alertCtrl: AlertController,public modalCtrl: ModalController,public navCtrl: NavController, public navParams: NavParams,public http:Http)  {
+  constructor( private alertCtrl: AlertController,public modalCtrl: ModalController,public nav: NavController, public navParams: NavParams,public http:Http)  {
   this.data= [];
 this.data.response="";
  this.http = http;
@@ -56,10 +56,9 @@ getItems(ev:any){
 success:any;
 itemSelected(name,list){
 	
-let EventTemplates = this.modalCtrl.create(EventTemplatesPage,{event_name:name,templatesInfo:list,userid:this.userid});
-EventTemplates.present();    
+     this.nav.push(EventTemplatesPage,{event_name:name,templatesInfo:list,userid:this.userid});
+   
 
-      
 }
 
 
